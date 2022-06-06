@@ -47,4 +47,36 @@ class ApiController extends Controller
         // $array = array("jp", "ali", "alaa", "pablo", "pablo", "pablo");
         echo $array[array_rand($array)];
     }
+
+    public function toList($student_array){
+        // $student_array = array("jp", "joe", "michel", "lama", "nour", "anthony", "ali");
+        $solution = array();
+        $sub = array();
+        if(count($student_array) % 2 == 0){
+            foreach($student_array as $value) {
+                if(count($sub) < 2){
+                    array_push($sub, $value);
+                    if(count($sub) == 2){
+                        array_push($solution, $sub);
+                        $sub = array();
+                    }
+                }
+            }
+            return $solution;         
+        }else{
+            $sliced = array_slice($student_array, 0, count($student_array)-1);
+            foreach($sliced as $value) {
+                if(count($sub) < 2){
+                    array_push($sub, $value);
+                    if(count($sub) == 2){
+                        array_push($solution, $sub);
+                        $sub = array();
+                    }
+                }
+            }
+            $last = $student_array[count($student_array)-1];
+            array_push($solution, $last);
+            return $solution;
+        }
+    }
 }
