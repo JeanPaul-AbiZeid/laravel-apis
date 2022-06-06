@@ -80,11 +80,11 @@ class ApiController extends Controller
         }
     }
 
-    public function getApi(){
-        $url = 'https://icanhazdadjoke.com/slack';
+    public function getApi($url){
+        $given_url = $url;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_URL, $given_url);
  
         $result = curl_exec($ch);
         $var = json_decode($result, true);
