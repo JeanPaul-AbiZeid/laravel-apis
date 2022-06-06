@@ -14,6 +14,7 @@ function isPalindrome($string){
 
 class ApiController extends Controller
 {
+    //counting the palindromes of an array
     public function countPal($array){
         // $array = array("hi", "aba", "yesey", "ahgs", "hiih", "hih");
         $count = 0;
@@ -28,6 +29,7 @@ class ApiController extends Controller
         echo $count;
     }
 
+    //getting the time passed sin 14 april 1732
     public function getTime(){
         $current_date = date(time()); //since 1/1/1970
         $years = 237*365*24*60*60; //years from 1732 tp 1970
@@ -43,22 +45,26 @@ class ApiController extends Controller
         ], 200);
     }
 
+    //selecting a random name
     public function nominee($array){
         // $array = array("jp", "ali", "alaa", "pablo", "pablo", "pablo");
         echo $array[array_rand($array)];
     }
 
+
+    //dividing to an array of arrays
     public function toList($student_array){
         // $student_array = array("jp", "joe", "michel", "lama", "nour", "anthony", "ali");
         $solution = array();
         $sub = array();
+        //checking if the length of the array is even
         if(count($student_array) % 2 == 0){
             foreach($student_array as $value) {
                 if(count($sub) < 2){
-                    array_push($sub, $value);
+                    array_push($sub, $value); //storing in temp array
                     if(count($sub) == 2){
-                        array_push($solution, $sub);
-                        $sub = array();
+                        array_push($solution, $sub); //pushing the tem array ength 2 to the solution
+                        $sub = array(); //resetting the temp array
                     }
                 }
             }
@@ -80,6 +86,7 @@ class ApiController extends Controller
         }
     }
 
+    //getting the text
     public function getApi($url){
         $given_url = $url;
         $ch = curl_init();
@@ -87,21 +94,22 @@ class ApiController extends Controller
         curl_setopt($ch, CURLOPT_URL, $given_url);
  
         $result = curl_exec($ch);
-        $var = json_decode($result, true);
+        $var = json_decode($result, true); //converting to array
  
         return $var["attachments"][0]["text"];
         
     }
-
-    public function getRecipe(){
-        $given_url = 'https://api.punkapi.com/v2/beers';
+    
+    //getting the beer recipe
+    public function getRecipe($url){
+        $given_url = $url; //assigning the url
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_URL, $given_url);
  
         $result = curl_exec($ch);
-        $var = json_decode($result, true);
-        $rand = array_rand($var);
+        $var = json_decode($result, true); //converting to array
+        $rand = array_rand($var); //selecting a random element from the array
         return $var[$rand]["ingredients"];
     }
 }
