@@ -92,4 +92,16 @@ class ApiController extends Controller
         return $var["attachments"][0]["text"];
         
     }
+
+    public function getRecipe(){
+        $given_url = 'https://api.punkapi.com/v2/beers';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $given_url);
+ 
+        $result = curl_exec($ch);
+        $var = json_decode($result, true);
+        $rand = array_rand($var);
+        return $var[$rand]["ingredients"];
+    }
 }

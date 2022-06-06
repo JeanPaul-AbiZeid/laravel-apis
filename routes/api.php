@@ -9,3 +9,4 @@ Route::get('/pal', [ApiController::class, 'countPal']);
 Route::get('/nominee', [ApiController::class, 'nominee']);
 Route::get('/list', [ApiController::class, 'toList']);
 Route::get('/getapi', [ApiController::class, 'getApi']);
+Route::get('/getrecipe', [ApiController::class, 'getRecipe']);
