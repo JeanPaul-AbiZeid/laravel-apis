@@ -5,6 +5,15 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    public function isPalindrome($string){
+        if ($string == strrev($string)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+
     public function getTime(){
         $current_date = date(time()); //since 1/1/1970
         $years = 237*365*24*60*60; //years from 1732 tp 1970
