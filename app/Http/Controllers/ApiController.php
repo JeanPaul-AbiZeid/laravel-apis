@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+
+    //couldn't use isPalindrome in countPal cz undefined function
     public function isPalindrome($string){
         if ($string == strrev($string)){
             return true;
@@ -13,6 +15,16 @@ class ApiController extends Controller
         }
     }
     
+    public function countPal($array){
+        // $array = array("hi", "aba", "yesey", "ahgs", "hiih");
+        $count = 0;
+        foreach($array as $value) {
+            if($value == strrev($value)){
+                $count = $count + 1;
+            }
+          }
+        echo $count;
+    }
 
     public function getTime(){
         $current_date = date(time()); //since 1/1/1970

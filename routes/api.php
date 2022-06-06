@@ -5,5 +5,5 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 
 Route::get('/time', [ApiController::class, 'getTime']);
-Route::get('/pal', [ApiController::class, 'isPalindrome']);
+Route::get('/pal', [ApiController::class, 'countPal']);
 
