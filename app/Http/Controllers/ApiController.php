@@ -15,7 +15,7 @@ function isPalindrome($string){
 class ApiController extends Controller
 {
     public function countPal($array){
-        $array = array("hi", "aba", "yesey", "ahgs", "hiih", "hih");
+        // $array = array("hi", "aba", "yesey", "ahgs", "hiih", "hih");
         $count = 0;
         foreach($array as $value) {
             // if($value == strrev($value)){
@@ -43,4 +43,8 @@ class ApiController extends Controller
         ], 200);
     }
 
+    public function nominee($array){
+        // $array = array("jp", "ali", "alaa", "pablo", "pablo", "pablo");
+        echo $array[array_rand($array)];
+    }
 }
