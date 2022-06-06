@@ -3,26 +3,28 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
+
+function isPalindrome($string){
+    if ($string == strrev($string)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 class ApiController extends Controller
 {
-
-    //couldn't use isPalindrome in countPal cz undefined function
-    public function isPalindrome($string){
-        if ($string == strrev($string)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
     public function countPal($array){
-        // $array = array("hi", "aba", "yesey", "ahgs", "hiih");
+        $array = array("hi", "aba", "yesey", "ahgs", "hiih", "hih");
         $count = 0;
         foreach($array as $value) {
-            if($value == strrev($value)){
+            // if($value == strrev($value)){
+            //     $count = $count + 1;
+            // }
+            if (isPalindrome($value) == true){
                 $count = $count + 1;
             }
-          }
+        }
         echo $count;
     }
 
@@ -39,5 +41,6 @@ class ApiController extends Controller
             "status" => "Success",
             "result" => $seconds_passed
         ], 200);
-    } 
+    }
+
 }
